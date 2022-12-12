@@ -1,0 +1,34 @@
+.ant-layout .ant-layout-header {
+    height: unset;
+    line-height: unset;
+}
+
+.ant-btn-primary {
+    color: #fff;
+    background-color: #922a8d;
+    box-shadow: 0 2px 0 rgba(218, 5, 255, 0.1);
+}
+
+.ant-btn-primary:not(:disabled):hover {
+    color: #fff;
+    background-color: #975594;
+}
+
+.ant-input,
+.ant-input:focus,
+.ant-input:hover {
+    border-color: #975594 !important;
+    outline: #975594;
+}
+
+.ant-input-affix-wrapper:focus,
+:where(.css-dev-only-do-not-override-1i536d8).ant-input-affix-wrapper-focused {
+    border-color: #975594;
+}
+
+.ant-input-affix-wrapper:hover,
+:where(.css-dev-only-do-not-override-1i536d8).ant-input-affix-wrapper:not(
+        :where(.css-dev-only-do-not-override-1i536d8).ant-input-affix-wrapper-disabled
+    ):hover {
+    border-color: #975594;
+}

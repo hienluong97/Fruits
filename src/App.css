@@ -1,38 +1,66 @@
-.App {
-  text-align: center;
+.ant-btn-primary {
+    color: #fff;
+    background-color: #922a8d;
+    box-shadow: 0 2px 0 rgba(218, 5, 255, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ant-btn-primary:not(:disabled):hover {
+    color: #fff;
+    background-color: #975594;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ant-input,
+.ant-input:focus,
+.ant-input:hover {
+    border-color: #975594 !important;
+    outline: #975594;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ant-input-affix-wrapper:focus,
+:where(.css-dev-only-do-not-override-1i536d8).ant-input-affix-wrapper-focused {
+    border-color: #975594;
 }
 
-.App-link {
-  color: #61dafb;
+.ant-input-affix-wrapper:hover,
+:where(.css-dev-only-do-not-override-1i536d8).ant-input-affix-wrapper:not(
+        :where(.css-dev-only-do-not-override-1i536d8).ant-input-affix-wrapper-disabled
+    ):hover {
+    border-color: #975594;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-inner,
+:where(.css-dev-only-do-not-override-1i536d8).ant-checkbox:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+    border-color: #975594;
+}
+
+.ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover
+    .ant-checkbox-checked:not(.ant-checkbox-disabled)
+    .ant-checkbox-inner {
+    background-color: #975594;
+    border-color: #975594;
+}
+.ant-checkbox-inner {
+    background-color: #975594;
+    border-color: #975594;
+}
+
+.ant-checkbox-checked:after {
+    border: 2px solid #975594;
+}
+.ant-checkbox-checked:after:hover {
+    border: 2px solid #975594;
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #975594;
+    border-color: #975594;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-bottom: 0 !important;
 }

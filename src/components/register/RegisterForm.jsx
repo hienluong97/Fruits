@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Checkbox, Form, Input, Typography } from 'antd';
+import { Button, Form, Input, Typography } from 'antd';
 
-const LoginForm = () => {
+const RegisterForm = () => {
     const { Link } = Typography;
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -27,16 +27,28 @@ const LoginForm = () => {
             autoComplete="off"
         >
             <Form.Item
+                label="name"
+                name="name"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Vui lòng nhập tên của bạn',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
                 label="email"
                 name="email"
                 rules={[
                     {
                         type: 'email',
-                        message: 'Vui lòng điền đúng địa chỉ email',
+                        message: 'Vui lòng nhập đúng địa chỉ email',
                     },
                     {
                         required: true,
-                        message: 'Vui lòng điền email của bạn',
+                        message: 'Vui lòng nhập email của bạn',
                     },
                 ]}
             >
@@ -55,28 +67,18 @@ const LoginForm = () => {
                 <Input.Password />
             </Form.Item>
             <Form.Item
-                name="remember"
-                valuePropName="checked"
-                wrapperCol={{
-                    offset: 8,
-                    span: 14,
-                }}
-            >
-                <Checkbox>Lưu đăng nhập</Checkbox>
-            </Form.Item>
-            <Form.Item
                 wrapperCol={{
                     offset: 8,
                     span: 14,
                 }}
             >
                 <Button type="primary" htmlType="submit">
-                    Đăng nhập
+                    Đăng ký
                 </Button>
             </Form.Item>
-            Bạn chưa có tài khoản ? <Link href="/">Đăng Ký</Link>
+            Bạn đã có tài khoản ? <Link href="/">Đăng nhập</Link>
         </Form>
     );
 };
 
-export default LoginForm;
+export default RegisterForm;

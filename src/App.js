@@ -1,17 +1,30 @@
 import './App.css';
-import { Button} from 'antd';
 import DefaultLayout from './components/DefaultLayout/DefaultLayout';
+import { Route, Routes } from 'react-router-dom';
+import { publicRoutes } from './Routes/routes';
 
 function App() {
-  return (
-
-      <DefaultLayout>
-      <header className="App-header">
-         hello world
-         <Button type="primary">Primary Button</Button>
-      </header>
-      </DefaultLayout>
-  );
+    return (
+        <>
+            <Routes>
+                {publicRoutes.map((route, index) => {
+                    const Component = route.component;
+                    console.log(Component);
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <DefaultLayout>
+                                    <Component />
+                                </DefaultLayout>
+                            }
+                        />
+                    );
+                })}
+            </Routes>
+        </>
+    );
 }
 
 export default App;

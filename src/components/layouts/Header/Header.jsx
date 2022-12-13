@@ -6,8 +6,7 @@ import { Input } from 'antd';
 import { Typography } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, DownOutlined } from '@ant-design/icons';
 import LoginForm from '../../login/LoginForm';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Dropdown } from 'antd';
 
 const MainHeader = () => {
     const { Text, Title, Link } = Typography;
@@ -23,27 +22,31 @@ const MainHeader = () => {
 
     const items = [
         {
-            label: 'Navigation Three - Submenu',
-            key: 'SubMenu',
-            icon: <SettingOutlined />,
-            children: [
-                {
-                    type: 'group',
-                    label: 'Item 1',
-                },
-                {
-                    type: 'group',
-                    label: 'Item 2',
-                },
-            ],
+            key: '1',
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+                    1st menu item
+                </a>
+            ),
+        },
+        {
+            key: '2',
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+                    2nd menu item
+                </a>
+            ),
+        },
+        {
+            key: '3',
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+                    3rd menu item
+                </a>
+            ),
         },
     ];
 
-    const [current, setCurrent] = useState('mail');
-    const onClick = (e) => {
-        console.log('click ', e);
-        setCurrent(e.key);
-    };
     return (
         <div style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <Row style={{ display: 'flex', alignItems: 'center' }}>
@@ -94,33 +97,58 @@ const MainHeader = () => {
                     </div>
                 </Col>
             </Row>
+
             <Row style={{ display: 'flex', justifyContent: 'center', marginTop: '16px', gap: '32px' }}>
-                <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
-                <Link href="/" style={{ display: 'block' }}>
+                <Dropdown
+                    menu={{
+                        items,
+                    }}
+                    placement="bottom"
+                >
                     <Title level={5} style={{ color: '#922a8d' }}>
                         QUÀ TẶNG TRÁI CÂY
                     </Title>
-                </Link>
-                <Link href="/" style={{ display: 'block' }}>
+                </Dropdown>
+                <Dropdown
+                    menu={{
+                        items,
+                    }}
+                    placement="bottom"
+                >
                     <Title level={5} style={{ color: '#922a8d' }}>
                         SẢN PHẨM
                     </Title>
-                </Link>
-                <Link href="/" style={{ display: 'block' }}>
+                </Dropdown>
+                <Dropdown
+                    menu={{
+                        items,
+                    }}
+                    placement="bottom"
+                >
                     <Title level={5} style={{ color: '#922a8d' }}>
                         TRÁI CÂY TƯƠI HÀNG NGÀY
                     </Title>
-                </Link>
-                <Link href="/" style={{ display: 'block' }}>
+                </Dropdown>
+                <Dropdown
+                    menu={{
+                        items,
+                    }}
+                    placement="bottom"
+                >
                     <Title level={5} style={{ color: '#922a8d' }}>
                         GÓC DÀNH RIÊNG CHO BẠN
                     </Title>
-                </Link>
-                <Link href="/" style={{ display: 'block' }}>
+                </Dropdown>
+                <Dropdown
+                    menu={{
+                        items,
+                    }}
+                    placement="bottom"
+                >
                     <Title level={5} style={{ color: '#922a8d' }}>
                         KHÁM PHÁ KLEVER
                     </Title>
-                </Link>
+                </Dropdown>
             </Row>
         </div>
     );

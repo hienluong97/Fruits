@@ -9,7 +9,6 @@
     background-color: #975594;
 }
 
-.ant-input,
 .ant-input:focus,
 .ant-input:hover {
     border-color: #975594 !important;
@@ -64,4 +63,18 @@ h5 {
     margin-block-end: 0;
     margin-bottom: 0 !important;
     margin-top: 0 !important;
+}
+.ant-spin {
+    color: #975594 !important;
+}
+.ant-spin-dot-item {
+    background-color: #975594 !important;
+}
+
+.ant-spin-dot-spin {
+    color: #975594 !important;
+}
+
+.ant-dropdown {
+    min-width: 140px !important;
 }

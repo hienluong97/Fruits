@@ -5,8 +5,15 @@ import { Col, Row, Modal } from 'antd';
 import { Input } from 'antd';
 import { Typography } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, DownOutlined } from '@ant-design/icons';
-import LoginForm from '../../login/LoginForm';
+import LoginForm from '../../../features/auth/login/LoginForm';
+import RegisterForm from '../../../features/auth/register/RegisterForm';
 import { Dropdown } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import FruitPresents from './nav/FruitPresents';
+import Fruits from './nav/Fruits';
+import FreshFruit from './nav/FreshFruit';
+import FruitExplore from './nav/FruitExplore';
+import { logout } from '../../../features/auth/login/userSlice';
 
 const MainHeader = () => {
     const { Text, Title, Link } = Typography;
@@ -19,31 +26,28 @@ const MainHeader = () => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
+    const [isLogin, setIsLogin] = useState(true);
+    const handleMode = () => {
+        setIsLogin(!isLogin);
+    };
+
+    const userInfor = useSelector((state) => state.user.current);
+    const hasUser = !(Object.keys(userInfor).length === 0);
+    const dispath = useDispatch();
+    const handleLogout = () => {
+        dispath(logout());
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
+    };
 
     const items = [
         {
             key: '1',
-            label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                    1st menu item
-                </a>
-            ),
+            label: <a href="https://www.antgroup.com">Thông tin tài khoản</a>,
         },
         {
             key: '2',
-            label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                    2nd menu item
-                </a>
-            ),
-        },
-        {
-            key: '3',
-            label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-                    3rd menu item
-                </a>
-            ),
+            label: <Text onClick={handleLogout}>Đăng xuất</Text>,
         },
     ];
 
@@ -71,21 +75,34 @@ const MainHeader = () => {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'right', gap: '24px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
                             <UserOutlined style={{ fontSize: '28px', color: '#922a8d' }} />
-                            <div style={{ display: 'flex', flexDirection: 'column' }} onClick={showModal}>
-                                <Text style={{ color: '#922a8d' }}>Đăng nhập / đăng kí</Text>
-                                <Text style={{ color: '#922a8d' }}>
-                                    {' '}
-                                    Tài khoản của tôi <DownOutlined style={{ fontSize: '12px', color: '#922a8d' }} />
-                                </Text>
-                            </div>
+                            {hasUser ? (
+                                <Dropdown
+                                    menu={{
+                                        items,
+                                    }}
+                                    placement="bottom"
+                                >
+                                    <Text style={{ color: '#922a8d', fontWeight: 'bold' }}>{`${userInfor.name}`}</Text>
+                                </Dropdown>
+                            ) : (
+                                <div style={{ display: 'flex', flexDirection: 'column' }} onClick={showModal}>
+                                    <Text style={{ color: '#922a8d' }}>Đăng nhập / đăng kí</Text>
+                                    <Text style={{ color: '#922a8d' }}>
+                                        {' '}
+                                        Tài khoản của tôi{' '}
+                                        <DownOutlined style={{ fontSize: '12px', color: '#922a8d' }} />
+                                    </Text>
+                                </div>
+                            )}
+
                             <Modal
-                                title="ĐĂNG NHẬP"
+                                title="  "
                                 open={isModalOpen}
                                 onCancel={handleCancel}
                                 okButtonProps={{ style: { display: 'none' } }}
                                 cancelButtonProps={{ style: { display: 'none' } }}
                             >
-                                <LoginForm />
+                                {isLogin ? <LoginForm setMode={handleMode} /> : <RegisterForm setMode={handleMode} />}
                             </Modal>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
@@ -99,56 +116,13 @@ const MainHeader = () => {
             </Row>
 
             <Row style={{ display: 'flex', justifyContent: 'center', marginTop: '16px', gap: '32px' }}>
-                <Dropdown
-                    menu={{
-                        items,
-                    }}
-                    placement="bottom"
-                >
-                    <Title level={5} style={{ color: '#922a8d' }}>
-                        QUÀ TẶNG TRÁI CÂY
-                    </Title>
-                </Dropdown>
-                <Dropdown
-                    menu={{
-                        items,
-                    }}
-                    placement="bottom"
-                >
-                    <Title level={5} style={{ color: '#922a8d' }}>
-                        SẢN PHẨM
-                    </Title>
-                </Dropdown>
-                <Dropdown
-                    menu={{
-                        items,
-                    }}
-                    placement="bottom"
-                >
-                    <Title level={5} style={{ color: '#922a8d' }}>
-                        TRÁI CÂY TƯƠI HÀNG NGÀY
-                    </Title>
-                </Dropdown>
-                <Dropdown
-                    menu={{
-                        items,
-                    }}
-                    placement="bottom"
-                >
-                    <Title level={5} style={{ color: '#922a8d' }}>
-                        GÓC DÀNH RIÊNG CHO BẠN
-                    </Title>
-                </Dropdown>
-                <Dropdown
-                    menu={{
-                        items,
-                    }}
-                    placement="bottom"
-                >
-                    <Title level={5} style={{ color: '#922a8d' }}>
-                        KHÁM PHÁ KLEVER
-                    </Title>
-                </Dropdown>
+                <FruitPresents />
+                <Fruits />
+                <FreshFruit />
+                <Title level={5} style={{ color: '#922a8d', cursor: 'pointer' }}>
+                    GÓC DÀNH RIÊNG CHO BẠN
+                </Title>
+                <FruitExplore />
             </Row>
         </div>
     );

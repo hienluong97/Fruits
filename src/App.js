@@ -9,7 +9,6 @@ function App() {
             <Routes>
                 {publicRoutes.map((route, index) => {
                     const Component = route.component;
-                    console.log(Component);
                     return (
                         <Route
                             key={index}

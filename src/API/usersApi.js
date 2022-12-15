@@ -1,8 +1,12 @@
-import axiosClient from './AxiosClient';
+import axiosClient from './axiosClient';
 const usersApi = {
-    getMe(params) {
+    register(data) {
         const url = '/users';
-        return axiosClient.post(url, { params });
+        return axiosClient.post(url, data);
+    },
+    login(data) {
+        const url = '/login';
+        return axiosClient.post(url, data);
     },
 };
 export default usersApi;

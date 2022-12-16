@@ -82,16 +82,14 @@ const MainHeader = () => {
                                     }}
                                     placement="bottom"
                                 >
-                                    <Text style={{ color: '#922a8d', fontWeight: 'bold' }}>{`${userInfor.name}`}</Text>
+                                    <Text style={{ color: '#922a8d', fontWeight: 'bold' }}>
+                                        {`${userInfor.name}`}{' '}
+                                        <DownOutlined style={{ fontSize: '10px', color: '#922a8d' }} />
+                                    </Text>
                                 </Dropdown>
                             ) : (
-                                <div style={{ display: 'flex', flexDirection: 'column' }} onClick={showModal}>
+                                <div onClick={showModal}>
                                     <Text style={{ color: '#922a8d' }}>Đăng nhập / đăng kí</Text>
-                                    <Text style={{ color: '#922a8d' }}>
-                                        {' '}
-                                        Tài khoản của tôi{' '}
-                                        <DownOutlined style={{ fontSize: '12px', color: '#922a8d' }} />
-                                    </Text>
                                 </div>
                             )}
 
@@ -102,7 +100,11 @@ const MainHeader = () => {
                                 okButtonProps={{ style: { display: 'none' } }}
                                 cancelButtonProps={{ style: { display: 'none' } }}
                             >
-                                {isLogin ? <LoginForm setMode={handleMode} /> : <RegisterForm setMode={handleMode} />}
+                                {isLogin ? (
+                                    <LoginForm setMode={handleMode} handleCloseModal={handleCancel} />
+                                ) : (
+                                    <RegisterForm setMode={handleMode} />
+                                )}
                             </Modal>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>

@@ -1,11 +1,27 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input, Typography } from 'antd';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { login } from '../login/userSlice';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-const LoginForm = ({ setMode }) => {
+const LoginForm = ({ setMode, handleCloseModal }) => {
     const { Text } = Typography;
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const dispatch = useDispatch();
+    const [hasUser, setHasUser] = useState(false);
+
+    const onFinish = async (values) => {
+        try {
+            const resultAction = await dispatch(login(values));
+            const user = unwrapResult(resultAction);
+            console.log(user);
+            setHasUser(!hasUser);
+            handleCloseModal();
+        } catch (error) {
+            console.log('fail to login');
+        }
     };
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };

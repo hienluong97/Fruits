@@ -6,7 +6,9 @@ function Homepage(props) {
     return (
         <div>
             <Slide />
-            <FruitPresents />
+            <div style={{ padding: '0 100px' }}>
+                <FruitPresents />
+            </div>
         </div>
     );
 }
